@@ -100,11 +100,24 @@ int main()
     int fd = open("file.txt", O_RDONLY);
     if (!fd)
         return (ERROR);
-    char *s = get_next_line(fd);
-    while (s != NULL)
+    int fd2 = open("file2.txt", O_RDONLY);
+    if (!fd2)
+    {
+	close(fd);
+ 	return (NULL);
+    }
+    char *s_fd = get_next_line(fd);
+    while (s_fd != NULL)
+    {
+        printf("%s", s_fd);
+        free(s_fd);
+        s_fd = get_next_line(fd);
+	}
+ char *s_fd2 = get_next_line(fd2);
+    while (s_fd2 != NULL)
     {
         printf("%s", s);
-        free(s);
-        s = get_next_line(fd);
-}
+        free(s_fd2);
+        s_fd2 = get_next_line(fd2);
+	}
 */
