@@ -16,7 +16,6 @@ se agrega este valor por defecto.
 
 /* CONSTANTS */
 #define ERROR           -1
-#define END_OF_FILE     0
 #define LINE_BREAK      '\n'
 #define NULL_CHARACTER  '\0'
 
@@ -27,13 +26,5 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
 char	*get_next_line(int fd);
-
-/* STRUCT */
-typedef struct s_list
-{
-    char    *last_line;
-    char    *next_line;
-    size_t  bytes_reads;
-}t_list;
 
 #endif
