@@ -7,7 +7,7 @@ Si no se define un buffer al compilar
 se agrega este valor por defecto.
 */
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 420000
+# define BUFFER_SIZE 4200
 #endif
 
 /* INCLUDES */
