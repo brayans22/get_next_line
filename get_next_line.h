@@ -13,13 +13,15 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# ifndef BUFFER_SIZE
-# define BUFFER_SIZE 4200
-# endif
-
 /* INCLUDES */
 # include <stdlib.h>
 # include <unistd.h>
+
+/* MACRO BUFFER */
+/* MACRO BUFFER */
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 420000000
+# endif
 
 /* CONSTANTS */
 # define ERROR           -1
@@ -33,5 +35,5 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
 char	*get_next_line(int fd);
-
+char	*free_str(char **str);
 #endif

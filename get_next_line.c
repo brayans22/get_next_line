@@ -13,6 +13,13 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
+char	*free_str(char **str)
+{
+	free(*str);
+	(*str) = NULL;
+	return (NULL);
+}
+
 static char	*read_file(int fd, char *storage)
 {
 	char	*buffer;
@@ -20,10 +27,8 @@ static char	*read_file(int fd, char *storage)
 
 	read_bytes = 1;
 	buffer = (char *)malloc(BUFFER_SIZE + 1);
-	if (!buffer){
-		free(storage);
-		return (NULL);
-	}
+	if (!buffer)
+		return (free_str(&storage));
 	buffer[0] = NULL_CHARACTER;
 	while (read_bytes > 0 && !(ft_strchr(buffer, LINE_BREAK)))
 	{
@@ -32,19 +37,13 @@ static char	*read_file(int fd, char *storage)
 		{
 			buffer[read_bytes] = NULL_CHARACTER;
 			storage = ft_strjoin(storage, buffer);
-			if(!storage)
-			{
-				free(buffer);
-				return NULL;
-			}
+			if (!storage)
+				return (free_str(&buffer));
 		}
 	}
 	free(buffer);
 	if (read_bytes == ERROR)
-	{
-		free(storage);
-		return (NULL);
-	}
+		return (free_str(&storage));
 	return (storage);
 }
 
@@ -74,18 +73,14 @@ static char	*update_storage(char *storage)
 
 	aux = ft_strchr(storage, LINE_BREAK);
 	if (!aux)
-	{
-		free(storage);
-		return (NULL);
-	}
+		return (free_str(&storage));
 	len_line = (aux - storage) + 1;
 	if (storage[len_line] == NULL_CHARACTER)
-	{
-		free(storage);
-		return (NULL);
-	}
+		return (free_str(&storage));
 	new_storage = ft_substr(storage, len_line, ft_strlen(storage) - len_line);
-	free(storage);
+	free_str(&storage);
+	if (!new_storage)
+		return (NULL);
 	return (new_storage);
 }
 
@@ -101,11 +96,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = get_line_storage(storage);
 	if (!line)
-	{
-		free(storage);
-		storage = NULL;
-		return (NULL);
-	}
+		return (free_str(&storage));
 	storage = update_storage(storage);
 	return (line);
 }

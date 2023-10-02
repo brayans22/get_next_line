@@ -13,24 +13,20 @@
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-/* MACROS */
-/* 
-Si no se define un buffer al compilar
-se agrega este valor por defecto.
-*/
-# ifndef BUFFER_SIZE
-# define BUFFER_SIZE 4200
-# endif
-
 /* INCLUDES */
 # include <stdlib.h>
 # include <unistd.h>
-# include <limits.h>
+
+/* MACRO BUFFER */
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 420000000
+# endif
 
 /* CONSTANTS */
 # define ERROR           -1
 # define LINE_BREAK      '\n'
 # define NULL_CHARACTER  '\0'
+# define OPEN_MAX 400000
 
 /* PROTOTYPE FUNCTIONS */
 size_t	ft_strlen(const char *s);
@@ -39,5 +35,5 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
 char	*get_next_line(int fd);
-
+char	*free_str(char **str);
 #endif
