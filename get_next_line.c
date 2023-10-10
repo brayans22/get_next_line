@@ -11,10 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-
-#include "get_next_line.h"
-#include <stdio.h>
 
 char	*free_str(char **str)
 {
