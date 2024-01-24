@@ -6,7 +6,7 @@
 /*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 17:56:25 by bsaiago-          #+#    #+#             */
-/*   Updated: 2023/10/01 18:50:42 by bsaiago-         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:13:34 by bsaiago-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	storage[fd] = read_file(fd, storage[fd]);
+	if (!storage[fd] || (storage[fd] && !ft_strchr(storage[fd], LINE_BREAK)))
+		storage[fd] = read_file(fd, storage[fd]);
 	if (!storage[fd])
 		return (NULL);
 	line = get_line_storage(storage[fd]);
