@@ -6,7 +6,7 @@
 /*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 17:48:07 by bsaiago-          #+#    #+#             */
-/*   Updated: 2023/10/01 22:34:03 by bsaiago-         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:11:39 by bsaiago-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ static char	*get_line_storage(char *storage)
 	char	*aux;
 	int		len;
 
-	if (!storage)
-		return (NULL);
 	aux = ft_strchr(storage, LINE_BREAK);
 	if (!aux)
 		aux = ft_strchr(storage, NULL_CHARACTER);
@@ -90,7 +88,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	storage = read_file(fd, storage);
+	if (!storage || (storage && !ft_strchr(storage, LINE_BREAK)))
+		storage = read_file(fd, storage);
 	if (!storage)
 		return (NULL);
 	line = get_line_storage(storage);
@@ -113,6 +112,6 @@ int main()
         printf("%s", s);
         free(s);
         s = get_next_line(fd);
-	}	
+	}
 }
 */
